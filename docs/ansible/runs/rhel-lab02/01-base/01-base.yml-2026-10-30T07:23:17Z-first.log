@@ -1,0 +1,23 @@
+$ ansible-playbook playbooks/01-base.yml  --limit rhel-lab02
+Phase: first
+UTC start: 2026-10-30T07:23:17Z
+Repository commit: a2aad69
+Playbook: playbooks/01-base.yml
+Verification Metadata: <repo>/docs/ansible/verification/01-base.services
+Services configured for verification: NetworkManager wg-quick@wg0 sshd firewalld
+Ansible: ansible [core 2.21.5]
+
+--- PLAYBOOK OUTPUT ---
+
+PLAY [Configure Firewalld and restrict SSH] ************************************
+
+TASK [Gathering Facts] *********************************************************
+[ERROR]: Task failed: Failed to connect to the host via ssh: ssh: connect to host 10.8.0.4 port 22: Network is unreachable
+fatal: [rhel-lab02]: UNREACHABLE! => {"changed": false, "msg": "Task failed: Failed to connect to the host via ssh: ssh: connect to host 10.8.0.4 port 22: Network is unreachable", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+rhel-lab02                 : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+--- EXIT STATUS: 4 ---
+Playbook result: FAIL

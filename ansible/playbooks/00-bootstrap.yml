@@ -14,7 +14,7 @@
   roles:
     - lan_shoehorn
     - service_user
-    - base_pkg_install 
+    - base_pkg_install
 
   tasks:
 

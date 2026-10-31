@@ -18,4 +18,3 @@ base_pkg_install:
   - tpm2-tools
   - wireguard-tools
   - at
-

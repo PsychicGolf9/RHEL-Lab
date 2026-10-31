@@ -26,8 +26,8 @@ The fourth change was an error while diagnosing the third.
 
 ## A Note On These Runs
 
-These runs were meant to test the TPM2 role when a target is already configured
-to use TPM correctly, not from a fresh state. Before promoting the playbooks
-00-bootstrap.yml and 01-base.yml to rhel-lab01, rhel-lab00 will be reset to
-a freshly installed state and the playbooks run again to catch any errors that
-may happen during a cold-build state.
+These runs were meant to test the playbooks when a target is already configured
+manually, not from a fresh state, especially the TPM tasks. Before promoting
+the playbooks 00-bootstrap.yml and 01-base.yml to rhel-lab01, a new node named
+rhel-lab02 will be created with a fresh install and the playbooks run again to
+catch any errors that may happen during a cold-build.

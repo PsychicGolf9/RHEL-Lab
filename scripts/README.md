@@ -133,8 +133,8 @@ Run it in the default per-host mode with:
 ./luks_passphrase.sh
 ```
 
-The script requires an interactive terminal because it reads passphrases
-through `/dev/tty`.
+The script requires an interactive terminal on the workstation (not the node to
+be configured) because it reads passphrases through `/dev/tty`.
 
 Vaulting a LUKS passphrase does not change the LUKS volume, enroll a TPM key,
 modify `crypttab`, rebuild the initramfs, or enable automatic unlocking. Those
@@ -204,7 +204,7 @@ that will be verified. These files are formatted exactly like bash_inventory,
 only filled with services rather than hostnames. They are optional, but
 strongly suggested to avoid writing them out in the command-line options.
 
-## Example
+### Example
 
 ```bash
 ./scripts/ansible_run_log.sh \
