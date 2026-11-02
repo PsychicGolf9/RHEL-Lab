@@ -205,12 +205,11 @@
   ansible.builtin.command:
     argv:
       - systemd-cryptenroll
-      - --unlock-key-file=-
       - --tpm2-device=auto
       - "--tpm2-pcrs={{ tpm2_pcrs }}"
       - "{{ item }}"
-    stdin: "{{ tpm2luks_passphrase }}"
-    stdin_add_newline: false
+  environment:
+    PASSWORD: "{{ tpm2luks_passphrase }}"
   register: tpm2_enroll_result
   no_log: true
   changed_when: true
