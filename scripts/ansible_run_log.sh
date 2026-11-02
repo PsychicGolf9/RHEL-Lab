@@ -160,7 +160,8 @@ if [[ "$(basename -- "${PLAYBOOK}")" == "00-bootstrap.yml" ]]; then
 fi
 
 PLAYBOOK_NAME="$(basename -- "${PLAYBOOK}")"
-METADATA_FILE="${REPO_ROOT}/docs/ansible/verification/${PLAYBOOK_NAME%.*}.services"
+METADATA_SHOW="docs/ansible/verification/${PLAYBOOK_NAME%.*}.services"
+METADATA_FILE="${REPO_ROOT}/${METADATA_SHOW}"
 
 load_services_metadata() {
   if ((SERVICES_CLI_SET == 1)); then
@@ -213,7 +214,7 @@ write_metadata() {
     printf 'UTC start: %s\n' "${RUN_DATE}T${RUN_TIME}Z"
     printf 'Repository commit: %s\n' "${COMMIT}"
     printf 'Playbook: %s\n' "${PLAYBOOK}"
-    printf 'Verification Metadata: %s\n' "${METADATA_FILE:-none}"
+    printf 'Verification Metadata: %s\n' "${METADATA_SHOW:-none}"
     printf 'Services configured for verification: %s\n' "$(services_as_text)"
     printf 'Ansible: %s\n' "$(ansible --version | head -n 1)"
     printf '\n--- PLAYBOOK OUTPUT ---\n'
@@ -284,7 +285,7 @@ run_verification() {
     printf 'UTC start: %s\n' "${RUN_DATE}T${RUN_TIME}Z"
     printf 'Repository commit: %s\n' "${COMMIT}"
     printf 'Playbook: %s\n' "${PLAYBOOK}"
-    printf 'Verification Metadata: %s\n' "${METADATA_FILE:-none}"
+    printf 'Verification Metadata: %s\n' "${METADATA_SHOW:-none}"
     printf 'Services configured for verification: %s\n' "$(services_as_text)"
     printf '\n--- SERVICE STATE ---\n'
   } >"${log_file}"

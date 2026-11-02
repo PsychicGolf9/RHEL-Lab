@@ -8,6 +8,18 @@
   notify: Restart wg-quick
   no_log: true
 
+
+- name: Allow WG handshake
+  ansible.posix.firewalld:
+    zone: "{{ item }}"
+    port: "{{ wg_port }}/udp"
+    permanent: true
+    immediate: true
+    state: enabled
+  loop:
+    - public
+    - drop
+
 - name: Enable and start WireGuard
   ansible.builtin.systemd:
     name: wg-quick@wg0

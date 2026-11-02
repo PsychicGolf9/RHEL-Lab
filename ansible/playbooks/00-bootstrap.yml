@@ -22,3 +22,21 @@
       ansible.builtin.include_role:
         name: network_configuration
         tasks_from: wireguard
+
+    - name: Verify tunnel functionality
+      block:
+        - name: Wait for SSH over tunnel
+          delegate_to: localhost
+          become: false
+          ansible.builtin.wait_for:
+            host: "{{ ansible_host_wg }}"
+            port: 22
+            timeout: 30
+      rescue:
+        - name: Fail with message
+          ansible.builtin.fail:
+            msg: >-
+              {{ inventory_hostname }}: no SSH over WireGuard at {{ ansible_host_wg }}:22.
+              Check that the [Peer] block has been created for the node in the control
+              node's /etc/wireguard/wg0.conf, that wg0 is up on both machines, and that
+              {{ wg_port }}/udp is open on the node.
