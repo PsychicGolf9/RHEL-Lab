@@ -980,7 +980,7 @@ unused devices: <none>
 [    2.295860] rhel-lab00 systemd[1]: Finished Create List of Static Device Nodes.
 [    2.319409] rhel-lab00 systemd[1]: Finished Apply Kernel Variables.
 [    2.281598] rhel-lab00 systemd-journald[256]: Journal started
-[    2.281639] rhel-lab00 systemd-journald[256]: Runtime Journal (/run/log/journal/3bbcc4870b1349dd9d5294e40793eb6d) is 8.0M, max 91.1M, 83.1M free.
+[    2.281639] rhel-lab00 systemd-journald[256]: Runtime Journal (/run/log/journal/<HEX32>) is 8.0M, max 91.1M, 83.1M free.
 [    2.281713] rhel-lab00 systemd-sysusers[258]: Creating group 'nobody' with GID 65534.
 [    2.353347] rhel-lab00 systemd[1]: Started Journal Service.
 [    2.287582] rhel-lab00 systemd-sysusers[258]: Creating group 'users' with GID 100.

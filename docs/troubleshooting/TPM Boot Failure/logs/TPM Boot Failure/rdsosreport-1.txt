@@ -982,7 +982,7 @@ unused devices: <none>
 [    2.321050] rhel-lab00 systemd[1]: Finished Apply Kernel Variables.
 [    2.342837] rhel-lab00 systemd[1]: Finished Create System Users.
 [    2.285742] rhel-lab00 systemd-journald[257]: Journal started
-[    2.285785] rhel-lab00 systemd-journald[257]: Runtime Journal (/run/log/journal/3bbcc4870b1349dd9d5294e40793eb6d) is 8.0M, max 91.1M, 83.1M free.
+[    2.285785] rhel-lab00 systemd-journald[257]: Runtime Journal (/run/log/journal/<HEX32>) is 8.0M, max 91.1M, 83.1M free.
 [    2.285847] rhel-lab00 systemd-sysusers[259]: Creating group 'nobody' with GID 65534.
 [    2.286026] rhel-lab00 systemd-sysusers[259]: Creating group 'users' with GID 100.
 [    2.286128] rhel-lab00 systemd-sysusers[259]: Creating group 'dbus' with GID 81.

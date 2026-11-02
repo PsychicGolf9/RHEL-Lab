@@ -1,0 +1,72 @@
+$ ansible-playbook playbooks/00-bootstrap.yml -K -k --limit rhel-lab02
+Phase: first
+UTC start: 2026-11-02T08:13:08Z
+Repository commit: 8ccf6e9
+Playbook: playbooks/00-bootstrap.yml
+Verification Metadata: docs/ansible/verification/00-bootstrap.services
+Services configured for verification: wg-quick@wg0 firewalld
+Ansible: ansible [core 2.21.5]
+
+--- PLAYBOOK OUTPUT ---
+
+PLAY [Bootstrap fresh install with packages, service user, and WireGuard] ******
+
+TASK [lan_shoehorn : Check if WireGuard is up] *********************************
+[ERROR]: Task failed: Module failed: Timeout when waiting for 10.8.0.4:22
+Origin: <repo>/ansible/roles/lan_shoehorn/tasks/main.yml:5:3
+
+3 # see docs/adr/lan_shoehorn.md for details.
+4
+5 - name: Check if WireGuard is up
+    ^ column 3
+
+fatal: [rhel-lab02 -> localhost]: FAILED! => {"changed": false, "elapsed": 3, "msg": "Timeout when waiting for 10.8.0.4:22"}
+...ignoring
+
+TASK [lan_shoehorn : Fallback to IPv4 if down] *********************************
+ok: [rhel-lab02]
+
+TASK [lan_shoehorn : Manually gather facts after correct IP is set] ************
+ok: [rhel-lab02]
+
+TASK [service_user : Create Ansible control user] ******************************
+changed: [rhel-lab02]
+
+TASK [service_user : Install Ansible's SSH ansible_pubkey] *********************
+changed: [rhel-lab02]
+
+TASK [service_user : Configure passwordless escalation for Ansible] ************
+changed: [rhel-lab02]
+
+TASK [service_user : Sudo test] ************************************************
+[WARNING]: Module remote_tmp /home/ansible/.ansible/tmp did not exist and was created with a mode of 0700, this may cause issues when running as another user. To avoid this, create the remote_tmp dir with the correct permissions manually
+ok: [rhel-lab02]
+
+TASK [base_pkg_install : Install required packages] ****************************
+changed: [rhel-lab02]
+
+TASK [Configure WireGuard] *****************************************************
+included: network_configuration for rhel-lab02
+
+TASK [network_configuration : Establish WireGuard server config] ***************
+changed: [rhel-lab02]
+
+TASK [network_configuration : Allow WG handshake] ******************************
+changed: [rhel-lab02] => (item=public)
+changed: [rhel-lab02] => (item=drop)
+
+TASK [network_configuration : Enable and start WireGuard] **********************
+changed: [rhel-lab02]
+
+TASK [Wait for SSH over tunnel] ************************************************
+ok: [rhel-lab02 -> localhost]
+
+RUNNING HANDLER [network_configuration : Restart wg-quick] *********************
+changed: [rhel-lab02]
+
+PLAY RECAP *********************************************************************
+rhel-lab02                 : ok=14   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+
+
+--- EXIT STATUS: 0 ---
+Playbook result: PASS

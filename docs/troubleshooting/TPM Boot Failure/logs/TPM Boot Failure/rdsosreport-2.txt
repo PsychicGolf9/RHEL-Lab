@@ -981,7 +981,7 @@ unused devices: <none>
 [    1.721836] rhel-lab00 systemd[1]: Finished Create System Users.
 [    1.723346] rhel-lab00 systemd[1]: Starting Create Static Device Nodes in /dev...
 [    1.660927] rhel-lab00 systemd-journald[257]: Journal started
-[    1.660970] rhel-lab00 systemd-journald[257]: Runtime Journal (/run/log/journal/3bbcc4870b1349dd9d5294e40793eb6d) is 8.0M, max 91.1M, 83.1M free.
+[    1.660970] rhel-lab00 systemd-journald[257]: Runtime Journal (/run/log/journal/<HEX32>) is 8.0M, max 91.1M, 83.1M free.
 [    1.661040] rhel-lab00 systemd-sysusers[260]: Creating group 'nobody' with GID 65534.
 [    1.661124] rhel-lab00 systemd-sysusers[260]: Creating group 'users' with GID 100.
 [    1.661227] rhel-lab00 systemd-sysusers[260]: Creating group 'dbus' with GID 81.

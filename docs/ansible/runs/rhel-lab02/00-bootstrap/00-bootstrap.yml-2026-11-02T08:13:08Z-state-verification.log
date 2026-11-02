@@ -1,0 +1,36 @@
+$ ansible rhel-lab02 -b -m command -a 'systemctl is-active SERVICE'
+UTC start: 2026-11-02T08:13:08Z
+Repository commit: 8ccf6e9
+Playbook: playbooks/00-bootstrap.yml
+Verification Metadata: docs/ansible/verification/00-bootstrap.services
+Services configured for verification: wg-quick@wg0 firewalld
+
+--- SERVICE STATE ---
+
+$ ansible rhel-lab02 -b -m command -a 'systemctl is-active wg-quick@wg0'
+[ERROR]: Task failed: Failed to connect to the host via ssh: ssh_askpass: exec(/usr/lib/ssh/ssh-askpass): No such file or directory
+Host key verification failed.
+Origin: <adhoc 'ansible.builtin.command' task>
+
+{'action': 'ansible.builtin.command', 'args': {'_raw_params': 'systemctl is-active wg-quick@wg0'}, 'timeout': 0, [...]
+
+rhel-lab02 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Task failed: Failed to connect to the host via ssh: ssh_askpass: exec(/usr/lib/ssh/ssh-askpass): No such file or directory\r\nHost key verification failed.",
+    "unreachable": true
+}
+
+$ ansible rhel-lab02 -b -m command -a 'systemctl is-active firewalld'
+[ERROR]: Task failed: Failed to connect to the host via ssh: ssh_askpass: exec(/usr/lib/ssh/ssh-askpass): No such file or directory
+Host key verification failed.
+Origin: <adhoc 'ansible.builtin.command' task>
+
+{'action': 'ansible.builtin.command', 'args': {'_raw_params': 'systemctl is-active firewalld'}, 'timeout': 0, [...]
+
+rhel-lab02 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Task failed: Failed to connect to the host via ssh: ssh_askpass: exec(/usr/lib/ssh/ssh-askpass): No such file or directory\r\nHost key verification failed.",
+    "unreachable": true
+}
+
+--- VERIFICATION EXIT STATUS: 1 ---
