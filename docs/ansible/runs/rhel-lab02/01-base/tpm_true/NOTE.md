@@ -32,3 +32,11 @@ to the following `systemd-cryptenroll` options:
 The `roles/tpm2/tasks/enroll.yml` task will be updated in the next commit to reflect
 this bug fix. The slot will be wiped from the node's keyslots in order to test
 again.
+
+## Third Failure
+
+Returned an error in `roles/tpm2/tasks/initrd.yml` saying that the drop-in file
+does not exist. Host was SSH'd into over the WireGuard tunnel and the directory
+was checked with `sudo ls /etc/dracut.conf.d/` which showed the file does
+exist, but was named `90-tpm.conf` when the task looks for `90-tpm2.conf`. The
+typo will be corrected, the file removed, and the playbook ran again.

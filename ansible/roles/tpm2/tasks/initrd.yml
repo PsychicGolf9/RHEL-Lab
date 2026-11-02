@@ -9,7 +9,7 @@
 - name: Deploy dracut config
   ansible.builtin.template:
     src: dracut-tpm2.conf.j2
-    dest: /etc/dracut.conf.d/90-tpm.conf
+    dest: /etc/dracut.conf.d/90-tpm2.conf
     mode: '0600'
     owner: root
     group: root
@@ -34,7 +34,7 @@
   notify: regenerate all
   changed_when: true
 
-- name: Verify dracut file exists and is readable
+- name: Register the drop-in file to assert against
   ansible.builtin.stat:
     path: /etc/dracut.conf.d/90-tpm2.conf
   register: tpm2_dracut_stat
