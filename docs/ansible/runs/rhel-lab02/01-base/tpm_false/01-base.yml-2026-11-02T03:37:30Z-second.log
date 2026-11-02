@@ -1,0 +1,298 @@
+$ ansible-playbook playbooks/01-base.yml  --limit rhel-lab02
+Phase: second
+UTC start: 2026-11-02T03:37:30Z
+Repository commit: 1ba21ef
+Playbook: playbooks/01-base.yml
+Verification Metadata: docs/ansible/verification/01-base.services
+Services configured for verification: NetworkManager wg-quick@wg0 sshd firewalld
+Ansible: ansible [core 2.21.5]
+
+--- PLAYBOOK OUTPUT ---
+
+PLAY [Configure Firewalld and restrict SSH] ************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [rhel-lab02]
+
+TASK [Set WiFi powersave to off] ***********************************************
+skipping: [rhel-lab02]
+
+TASK [Configure Firewalld] *****************************************************
+included: network_configuration for rhel-lab02
+
+TASK [network_configuration : Ensure firewalld is running and enabled] *********
+ok: [rhel-lab02]
+
+TASK [network_configuration : Check current default zone] **********************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Set default zone to drop] ************************
+skipping: [rhel-lab02]
+
+TASK [network_configuration : Assign LAN interface to Drop] ********************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Allow WG handshake] ******************************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Assign wg0 to management zone] *******************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Remove unwanted services from wg0 zone] **********
+ok: [rhel-lab02] => (item=cockpit)
+ok: [rhel-lab02] => (item=dhcpv6-client)
+ok: [rhel-lab02] => (item=mdns)
+
+TASK [network_configuration : Allow SSH over wg0] ******************************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Verify wg0 is up] ********************************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Abort if wg0 isn't up] ***************************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Verify SSH is permitted in wg0 zone] *************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Abort if SSH not in wg0 zone] ********************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Apply changes] ***********************************
+
+TASK [Harden SSH] **************************************************************
+included: network_configuration for rhel-lab02
+
+TASK [network_configuration : Read admin authorized_keys] **********************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Verify each admin key is enrolled] ***************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Check control node can reach this host over WG] ***
+ok: [rhel-lab02 -> localhost]
+
+TASK [network_configuration : Abort if WG tunnel is down] **********************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Deploy sshd hardening drop-in when lockdown is enabled] ***
+ok: [rhel-lab02]
+
+TASK [network_configuration : Remove sshd hardening drop-in when lockdown is disabled] ***
+skipping: [rhel-lab02]
+
+TASK [network_configuration : Deploy standard sshd listen drop-in when lockdown is disabled] ***
+skipping: [rhel-lab02]
+
+TASK [network_configuration : Remove standard listen drop-in when lockdown is enabled] ***
+ok: [rhel-lab02]
+
+TASK [network_configuration : Deploy WG sshd listen drop-in when lockdown is enabled] ***
+ok: [rhel-lab02]
+
+TASK [network_configuration : Remove WG sshd listen drop-in when lockdown is disabled] ***
+skipping: [rhel-lab02]
+
+TASK [network_configuration : Read sshd configuration] *************************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Abort if permissive auth remains after hardening step] ***
+ok: [rhel-lab02]
+
+TASK [network_configuration : Test sshd config before reloading] ***************
+ok: [rhel-lab02]
+
+TASK [network_configuration : Abort if sshd config test fails] *****************
+skipping: [rhel-lab02]
+
+PLAY [Preflight checks, enroll, and regen initramfs] ***************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [rhel-lab02]
+
+TASK [tpm2 : Report skipping TPM2 role] ****************************************
+ok: [rhel-lab02] => {
+    "msg": "rhel-lab02: tpm2_enabled is false or undefined. This role will be skipped unless tpm2_enabled is set to true in host_vars files."
+}
+
+TASK [tpm2 : Assert TPM2 support is explicitly enabled] ************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert the LUKS passphrase is available] **************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert PCR configuration is defined] ******************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Validate PCR configuration syntax] ********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Validate PCR indexes] *********************************************
+skipping: [rhel-lab02] => (item=7) 
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Get the active root mount source] *********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that root uses the supported device-mapper layout] *********
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Discover the LUKS ancestor of the root mapper] ********************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Set the discovered LUKS device] ***********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that a LUKS ancestor was discovered] ***********************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Verify that the discovered device is a LUKS container] ************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that the TPM2 device is LUKS2] *****************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Parse LUKS2 metadata] *********************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Verify LUKS2 format] **********************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Collect passphrase-capable LUKS2 keyslots] ************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that a recovery passphrase keyslot exists] *****************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Get the LUKS UUID] ************************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Set the discovered LUKS UUID] *************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that the LUKS UUID was discovered] *************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Check for an available TPM2 device] *******************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that a TPM2 device is available] ***************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Check crypttab for the root mapping] ******************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that the root mapping exists in crypttab] ******************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Report missing link-volume-key when configured as a requirement] ***
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Detect existing systemd TPM2 tokens] ******************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Set enrollment status] ********************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert that a free LUKS2 keyslot exists for new enrollment] *******
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Report existing TPM2 enrollment] **********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Flush handlers after preflight] ***********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert TPM2 enrollment is enabled] ********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert recovery-key enrollment is not enabled without secure key handling] ***
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert TPM PIN enrollment is not enabled for this noninteractive task] ***
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Build unique TPM2 enrollment target list] *************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert enrollment targets are defined] ****************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert passphrase is available for new enrollment] ****************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Read LUKS2 metadata for every enrollment target] ******************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert metadata was readable for every enrollment target] *********
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Detect existing systemd TPM2 tokens for every target] *************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Refuse to alter an already enrolled target] ***********************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Build list of targets requiring enrollment] ***********************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Report targets that are already enrolled] *************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert a recovery passphrase keyslot exists on each new target] ***
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert a free LUKS2 keyslot exists on each new target] ************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Enroll TPM2 token on each new LUKS2 target] ***********************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Re-read LUKS2 metadata after enrollment] **************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert a systemd TPM2 token was written successfully] *************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert the passphrase keyslot survived enrollment] ****************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Report enrollment targets requiring the initrd task] **************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Report check-mode behavior] ***************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Create dracut config directory] ***********************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Deploy dracut config] *********************************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Check if rd.luks.options is already present in kernel cmdline] ****
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Add rd.luks.options to kernel cmdline if missing] *****************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Verify dracut file exists and is readable] ************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Assert dracut config was deployed successfully] *******************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Warn that reboot is required for changes to take effect] **********
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Flush handlers after role completion] *****************************
+skipping: [rhel-lab02]
+
+TASK [tpm2 : Notify status and that reboot is required] ************************
+skipping: [rhel-lab02]
+
+PLAY RECAP *********************************************************************
+rhel-lab02                 : ok=26   changed=0    unreachable=0    failed=0    skipped=62   rescued=0    ignored=0   
+
+
+--- EXIT STATUS: 0 ---
+Playbook result: PASS

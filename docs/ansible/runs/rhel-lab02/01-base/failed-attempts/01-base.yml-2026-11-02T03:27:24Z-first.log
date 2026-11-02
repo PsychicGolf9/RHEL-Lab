@@ -1,0 +1,25 @@
+$ ansible-playbook playbooks/01-base.yml  --limit rhel-lab02
+Phase: first
+UTC start: 2026-11-02T03:27:24Z
+Repository commit: 1ba21ef
+Playbook: playbooks/01-base.yml
+Verification Metadata: docs/ansible/verification/01-base.services
+Services configured for verification: NetworkManager wg-quick@wg0 sshd firewalld
+Ansible: ansible [core 2.21.5]
+
+--- PLAYBOOK OUTPUT ---
+
+PLAY [Configure Firewalld and restrict SSH] ************************************
+
+TASK [Gathering Facts] *********************************************************
+[ERROR]: Task failed: Failed to connect to the host via ssh: ssh_askpass: exec(/usr/lib/ssh/ssh-askpass): No such file or directory
+Host key verification failed.
+
+fatal: [rhel-lab02]: UNREACHABLE! => {"changed": false, "msg": "Task failed: Failed to connect to the host via ssh: ssh_askpass: exec(/usr/lib/ssh/ssh-askpass): No such file or directory\r\nHost key verification failed.", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+rhel-lab02                 : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+--- EXIT STATUS: 4 ---
+Playbook result: FAIL
