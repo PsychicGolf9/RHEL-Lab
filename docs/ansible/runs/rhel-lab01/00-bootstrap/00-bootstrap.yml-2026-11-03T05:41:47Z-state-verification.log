@@ -1,0 +1,18 @@
+$ ansible rhel-lab01 -b -m command -a 'systemctl is-active SERVICE'
+UTC start: 2026-11-03T05:41:47Z
+Repository commit: b8f0dd6
+Playbook: playbooks/00-bootstrap.yml
+Verification Metadata: docs/ansible/verification/00-bootstrap.services
+Services configured for verification: wg-quick@wg0 firewalld
+
+--- SERVICE STATE ---
+
+$ ansible rhel-lab01 -b -m command -a 'systemctl is-active wg-quick@wg0'
+rhel-lab01 | CHANGED | rc=0 >>
+active
+
+$ ansible rhel-lab01 -b -m command -a 'systemctl is-active firewalld'
+rhel-lab01 | CHANGED | rc=0 >>
+active
+
+--- VERIFICATION EXIT STATUS: 0 ---

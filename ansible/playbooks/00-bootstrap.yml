@@ -9,7 +9,9 @@
   #
   # !!!!!!! MAKE SURE TO RUN THIS PLAY WITH THE -Kk FLAG SO ANSIBLE PROMPTS FOR THE SUDO AND SSH PASSWORDS !!!!!!!
   #
-  #
+  # Note: If this play is run for the first time with host_key_checking, it
+  # will fail at the end until the tunnel IP fingerprint is registered with the
+  # control machine. Try to automate this in the future.
 
   roles:
     - lan_shoehorn
