@@ -188,7 +188,7 @@ security-sensitive configuration to a node.
 ## `ansible_run_log.sh`
 
 This script runs a selected Ansible playbook against a target host
-and generates a log file for it found at [`docs/ansible/runs`](docs/ansible/runs/).
+and generates a log file for it found at [`docs/ansible/runs`](../docs/ansible/runs/).
 It also generates a directory tree for each host and each playbook that is run.
 Specifically, it captures:
 

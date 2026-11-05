@@ -1,4 +1,4 @@
-# Failure Note
+# Failure Hypothesis
 
 Host key verification failed because the node was wasn't manually SSH'd into
 first in order to accept the fingerprint.
